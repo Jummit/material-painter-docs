@@ -13,6 +13,7 @@ Material Painter is an open source Substance Painter alternative made using the 
    painting
    baking
    effects
+   settings
    workflow
    contributing
 
