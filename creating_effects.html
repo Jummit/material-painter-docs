@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Creating Effects &mdash; Material Painter  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Texturing Workflow" href="workflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Material Painter
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_interface.html">The User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer_stack.html">The Layer Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asset_library.html">Asset Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="painting.html">Painting And Selection Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="baking.html">Baking Mesh Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow.html">Texturing Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating Effects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#structure-of-an-effect">Structure of an Effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-shader">The Shader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-properties-in-the-shader">Using Properties in the Shader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blending-and-modifying">Blending and modifying</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-effect">Using the Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Material Painter</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Creating Effects</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/creating_effects.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-effects">
+<span id="doc-creating-effects"></span><h1>Creating Effects<a class="headerlink" href="#creating-effects" title="Permalink to this headline">¶</a></h1>
+<p>Effects are json-based layers that specify a shader and expose its parameters. Material Painter ships with some useful effects by default, for example blur, hsv adjust and invert.</p>
+<div class="section" id="structure-of-an-effect">
+<h2>Structure of an Effect<a class="headerlink" href="#structure-of-an-effect" title="Permalink to this headline">¶</a></h2>
+<p>This is the structure of the <code class="docutils literal notranslate"><span class="pre">Scalar</span></code> layer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Scalar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                        <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="mf">0.5</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;blends&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;in_context_menu&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;shader&quot;</span><span class="p">:</span> <span class="s2">&quot;return vec4(</span><span class="si">{value}</span><span class="s2">, </span><span class="si">{value}</span><span class="s2">, </span><span class="si">{value}</span><span class="s2">, 1.0);&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The name is how the effect will be called in Material Painter. The <code class="docutils literal notranslate"><span class="pre">properties</span></code> array holds the properties that can be used in the shader and are exposed in the editor. If <code class="docutils literal notranslate"><span class="pre">in_context_menu</span></code> is true, the effect will appear when right clicking in the <a class="reference internal" href="layer_stack.html#doc-layer-stack"><span class="std std-ref">Layer Stack</span></a>.</p>
+</div>
+<div class="section" id="the-shader">
+<h2>The Shader<a class="headerlink" href="#the-shader" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">shader</span></code> property holds the shader that is used to compose the final material. It should return a <code class="docutils literal notranslate"><span class="pre">vec4</span></code>.</p>
+<p>Information about Godot’s shader language can be found in the <a class="reference external" href="https://docs.godotengine.org/en/latest/tutorials/shaders/shader_reference/index.html">Godot Shader Reference</a>.</p>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>There are properties for each shader uniform type. The type of a property is specified in the <cite>type</cite> value.</p>
+<p>Here are the available types and their unique settings:</p>
+<p><strong>color</strong></p>
+<p><strong>float</strong> and <strong>int</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">range:</th><td class="field-body">An array with two numbers, for example <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">5.5]</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">default:</th><td class="field-body">The default value, for example <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>enum</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">options:</th><td class="field-body">An array of values, for example <code class="docutils literal notranslate"><span class="pre">[&quot;r&quot;,</span> <span class="pre">&quot;g&quot;,</span> <span class="pre">&quot;b&quot;]</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">default:</th><td class="field-body">An element of the <code class="docutils literal notranslate"><span class="pre">options</span></code> array that is the default value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="using-properties-in-the-shader">
+<h2>Using Properties in the Shader<a class="headerlink" href="#using-properties-in-the-shader" title="Permalink to this headline">¶</a></h2>
+<p>By default, every property will be added to the shader as a uniform and can be used in the shader with <code class="docutils literal notranslate"><span class="pre">{property_name}</span></code>. If <code class="docutils literal notranslate"><span class="pre">shader_param</span></code> is set to false, the property will not be added as a uniform, and can be used in the shader directly. This is used in the <code class="docutils literal notranslate"><span class="pre">Isolate</span> <span class="pre">Channel</span></code> layer to specify if the red, green or blue channel should be isolated.</p>
+</div>
+<div class="section" id="blending-and-modifying">
+<h2>Blending and modifying<a class="headerlink" href="#blending-and-modifying" title="Permalink to this headline">¶</a></h2>
+<p>Layers can either return a value that is blended with the previous layer, like a <code class="docutils literal notranslate"><span class="pre">Scalar</span></code> or a <code class="docutils literal notranslate"><span class="pre">Color</span></code> layer. This can be enabled by setting <code class="docutils literal notranslate"><span class="pre">blends</span></code> to true.
+By default they modify the previous layer, like <code class="docutils literal notranslate"><span class="pre">Blur</span></code> or <code class="docutils literal notranslate"><span class="pre">HSVAdjust</span></code>. You can use <code class="docutils literal notranslate"><span class="pre">{previous}(uv)</span></code> to refer to the previous result; <code class="docutils literal notranslate"><span class="pre">{previous}</span></code> is the function of the previous layer, so you can pass any uv coordinates you want. This is used in the <code class="docutils literal notranslate"><span class="pre">Blur</span></code> layer.</p>
+</div>
+<div class="section" id="using-the-effect">
+<h2>Using the Effect<a class="headerlink" href="#using-the-effect" title="Permalink to this headline">¶</a></h2>
+<p>Like any asset, you can add it to your global library by dropping the effect file into the <a class="reference internal" href="asset_library.html#doc-asset-library"><span class="std std-ref">Asset Browser</span></a>. It will be stored in <code class="docutils literal notranslate"><span class="pre">user://assets/effects</span></code>. To add an effect to your project library, you can put it in the <code class="docutils literal notranslate"><span class="pre">asset/effects</span></code> folder alongside your project file.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="workflow.html" class="btn btn-neutral float-left" title="Texturing Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Jummit
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
