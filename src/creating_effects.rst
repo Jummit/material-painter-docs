@@ -1,10 +1,12 @@
-Effect Layers
-=============
+.. _doc_creating_effects:
+
+Creating Effects
+================
 
 Effects are json-based layers that specify a shader and expose its parameters. Material Painter ships with some useful effects by default, for example blur, hsv adjust and invert.
 
-Creating a Custom Effect
-------------------------
+Structure of an Effect
+----------------------
 
 This is the structure of the ``Scalar`` layer:
 ::

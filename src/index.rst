@@ -6,15 +6,16 @@ Material Painter is an open source Substance Painter alternative made using the 
 .. toctree::
    :maxdepth: 2
    
-   getting_started
+   introduction
    user_interface
    layer_stack
+   layers
    asset_library
    painting
    baking
-   effects
    settings
    workflow
+   creating_effects
    contributing
 
 * :ref:`search`

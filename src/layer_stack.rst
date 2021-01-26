@@ -3,6 +3,8 @@
 The Layer Stack
 ===============
 
+.. image:: images/layer_stack.png
+
 Overview
 --------
 
@@ -18,9 +20,4 @@ Folders can be used on the Material Layer and Texture Layer level to organize an
 Masks
 -----
 
-Masks can be added to Material Layers and Material Folders by right clicking and selecting "Add Mask", which will be used when blending the layers. Light values will make the layer opaque and black values will make it transparent.
-
-The Property Panel
-------------------
-
-The properties of the selected layer are shown in the property panel.
+Masks can be added to Material Layers and Material Folders by right clicking and selecting "Add Mask". They will be used when blending the layers. Light values will make the layer opaque and black values will make it transparent.
